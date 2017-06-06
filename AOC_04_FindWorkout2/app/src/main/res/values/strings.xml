@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">AOC_04_FindWorkout</string>
+    <string name="action_settings">Settings</string>
+    <string name="button">New Button</string>
+    <string name="workout_here">Workout Here</string>
+
+    <string-array name="workout_types">
+        <item>Chest</item>
+        <item>Biceps</item>
+        <item>Triceps</item>
+        <item>Shoulder</item>
+
+    </string-array>
+</resources>

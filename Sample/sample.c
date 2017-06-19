@@ -102,7 +102,7 @@ char AddBeforePoint(int point1, int point2,char *s){
 	int surplus = 0;
 	i = point1 - 1;
 	j = point2 - 1;
-	s[0] = 49;
+	s[0] = 49;    /* ASCII of zero */
 	
 	for (i;i >= 0; i--){
 		if(j >= 0){
@@ -130,7 +130,7 @@ char AddBeforePoint(int point1, int point2,char *s){
 	return *s;
 }
 
-AddAfterPoint(int point1, int point2,char *s){
+char AddAfterPoint(int point1, int point2,char *s){
     int i = 0;
 	int j = 0;
 	int k = 0;
@@ -145,7 +145,8 @@ AddAfterPoint(int point1, int point2,char *s){
 	j = strlen(gSecondNumber) - 1;
 	
 	for(i; i > point1; i--){
-		if(i >= temp){
+		printf("%d\n",i);
+		if(i > temp){
 			total = CovertStringToDigit(gFirstNumber[i]);
 		}
 		else{
@@ -161,6 +162,8 @@ AddAfterPoint(int point1, int point2,char *s){
 			surplus = 0;
 			s[i + 1] = CovertDigitToString(total);
 		}
+		
+		printf("%c\n",s[i + 1]);
 		
 		total = 0;
 	    j--;

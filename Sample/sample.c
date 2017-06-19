@@ -151,6 +151,7 @@ char AddAfterPoint(int point1, int point2,char *s){
 		}
 		else{
 			total = CovertStringToDigit(gFirstNumber[i]) + CovertStringToDigit(gSecondNumber[j])+ surplus;
+			j--;
 		}
 		
 		if(total >= 10){
@@ -166,7 +167,6 @@ char AddAfterPoint(int point1, int point2,char *s){
 		printf("%c\n",s[i + 1]);
 		
 		total = 0;
-	    j--;
 	}
 	s[point1 + 1] = CovertDigitToString(surplus);
 	

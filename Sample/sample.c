@@ -4,7 +4,7 @@
 #include <stddef.h>
 
 char gFirstNumber[100] = "222233.3211";
-char gSecondNumber[100] = "3393.924";
+char gSecondNumber[100] = "3393.624";
 
 /* Function to dectect the location of character '.' */
 int GetPointInfo(char *s){ 
@@ -115,7 +115,7 @@ char AddBeforePoint(int point1, int point2,char *s){
 		if(total >= 10){
 			surplus = 1;
 			total = total % 10;
-			s[ + 1] = CovertDigitToString(total);
+			s[i + 1] = CovertDigitToString(total);
 		}
 		else{
 			surplus = 0;
@@ -137,9 +137,10 @@ char AddAfterPoint(int point1, int point2,char *s){
 	int total = 0;
 	int surplus = 0;
 	int temp = 0;
-	temp = point1 + strlen(gSecondNumber) - point2;
-	s[point1 + 1] = 49; 							/* ASCII of 0 */
-	s[point1] = 46;     							/* ASCII of '.' */
+	temp = point1 + strlen(gSecondNumber) - point2 - 1;
+	printf("temp = %d \n", temp);
+	s[point1 + 1] = 46;									/* ASCII of '.' */
+	s[point1 + 2] = 49; 							/* ASCII of zero */     							/* ASCII of '.' */
 	
 	i = strlen(gFirstNumber) - 1;
 	j = strlen(gSecondNumber) - 1;
@@ -157,22 +158,26 @@ char AddAfterPoint(int point1, int point2,char *s){
 		if(total >= 10){
 			surplus = 1;
 			total = total % 10;
-			s[i + 1] = CovertDigitToString(total);
+			s[i + 2] = CovertDigitToString(total);
 		}
 		else{
 			surplus = 0;
-			s[i + 1] = CovertDigitToString(total);
+			s[i + 2] = CovertDigitToString(total);
 		}
 		
 		printf("%c\n",s[i + 1]);
 		
 		total = 0;
 	}
-	s[point1 + 1] = CovertDigitToString(surplus);
+	s[point1 + 2] = CovertDigitToString(surplus);
 	
 	return *s;
 }
 
+void RemoveZeroLetter(char *s){
+	int i = 0;
+	
+}
 
 int main(){
 	char *s;
@@ -181,6 +186,7 @@ int main(){
 	int point2 = GetPointInfo(gSecondNumber);
 	s = (char*)malloc(sizeof(s)*100);
 	*s = AddBeforePoint(point1,point2,s);
+	printf("%s\n",s);
 	*s = AddAfterPoint(point1,point2,s);
 	printf("%s\n",s);
 	free(s);

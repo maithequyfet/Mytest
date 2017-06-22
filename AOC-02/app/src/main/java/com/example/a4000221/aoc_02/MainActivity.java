@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         Button myButton = (Button) findViewById(R.id.myButton);
 
         myButton.setOnClickListener(
-            new Button.OnClickListener() {
+           new Button.OnClickListener() {
                 public void onClick(View v) {
                     TextView myText = (TextView) findViewById(R.id.myText);
                     myText.setText("Clicked");
@@ -25,4 +25,3 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 }
-w

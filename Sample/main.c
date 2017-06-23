@@ -2,16 +2,16 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stddef.h>
-#include "DegitDefine.h"
+#include "DigitDefine.h"
 
-char gFirstNumber[100] = "222232222222222222223.3212002201";
-char gSecondNumber[100] = "93393.624";
+char gFirstNumber[MAXSIZE] = "222232222222222222223.3212002201";
+char gSecondNumber[MAXSIZE] = "93393.624";
 
 /* Function to dectect the location of character '.' */
 int GetPointInfo(char *s){
 	int i = 0;
 	for(i = 0; i < strlen(s); i++){
-		if(s[i] == '.'){
+		if(s[i] == ASCII_POINT){
 			break;
 		}
 	}
@@ -22,38 +22,38 @@ int GetPointInfo(char *s){
 int CovertStringToDigit(char s){
 	int temp;
     switch(s){
-	    case 48:
+	    case ASCII_0:
 		    temp = 0;
 			break;
-		case 49:
+		case ASCII_1:
 		    temp = 1;
 			break;
-		case 50:
+		case ASCII_2:
 		    temp = 2;
 			break;
-		case 51:
+		case ASCII_3:
 		    temp = 3;
 			break;
-		case 52:
+		case ASCII_4:
 		    temp = 4;
 			break;
-		case 53:
+		case ASCII_5:
 		    temp = 5;
 			break;
-		case 54:
+		case ASCII_6:
 		    temp = 6;
 			break;
-		case 55:
+		case ASCII_7:
 		    temp = 7;
 			break;
-		case 56:
+		case ASCII_8:
 		    temp = 8;
 			break;
-		case 57:
+		case ASCII_9:
 		    temp = 9;
 			break;
 		default:
-			return -1;
+			return ERROR;
     }
 	return temp;
 }
@@ -63,37 +63,37 @@ char CovertDigitToString(int num){
 	char temp;
     switch(num){
 	    case 0:
-		    temp = 48;
+		    temp = ASCII_0;
 			break;
 		case 1:
-		    temp = 49;
+		    temp = ASCII_1;
 			break;
 		case 2:
-		    temp = 50;
+		    temp = ASCII_2;
 			break;
 		case 3:
-		    temp = 51;
+		    temp = ASCII_3;
 			break;
 		case 4:
-		    temp = 52;
+		    temp = ASCII_4;
 			break;
 		case 5:
-		    temp = 53;
+		    temp = ASCII_5;
 			break;
 		case 6:
-		    temp = 54;
+		    temp = ASCII_6;
 			break;
 		case 7:
-		    temp = 55;
+		    temp = ASCII_7;
 			break;
 		case 8:
-		    temp = 56;
+		    temp = ASCII_8;
 			break;
 		case 9:
-		    temp = 57;
+		    temp = ASCII_9;
 			break;
 		default:
-			return -1;
+			return ERROR;
     }
 	return temp;
 }
@@ -106,7 +106,7 @@ char AddBeforePoint(int point1, int point2,char *s){
 	int surplus = 0;
 	i = point1 - 1;
 	j = point2 - 1;
-	s[0] = 49;    /* ASCII of zero */
+	s[0] = ASCII_0;
 
 	for (i;i >= 0; i--){
 		if(j >= 0){
@@ -136,13 +136,12 @@ char AddBeforePoint(int point1, int point2,char *s){
 char AddAfterPoint(int point1, int point2,char *s){
     int i = 0;
 	int j = 0;
-	int k = 0;
 	int total = 0;
 	int surplus = 0;
 	int temp = 0;
 	temp = point1 + strlen(gSecondNumber) - point2 - 1;
-	s[point1 + 1] = 46;									/* ASCII of '.' */
-	s[point1 + 2] = 49; 							/* ASCII of zero */     							/* ASCII of '.' */
+	s[point1 + 1] = ASCII_POINT;									/* ASCII of '.' */
+	s[point1 + 2] = ASCII_0; 							/* ASCII of zero */     							/* ASCII of '.' */
 
 	i = strlen(gFirstNumber) - 1;
 	j = strlen(gSecondNumber) - 1;
@@ -177,7 +176,7 @@ void RemoveZeroLetter(char *s){
 	int i = 0;
 	int len = strlen(s);
 	int point = 0;
-	if(s[0] == 48){
+	if(s[0] == ASCII_0){
 	    for(i = 0; i < len; i++){
 		    s[i] = s[i+1];
 		}
@@ -186,7 +185,7 @@ void RemoveZeroLetter(char *s){
 	}
 
     point = GetPointInfo(s);
-	if(s[point + 1] == 48){
+	if(s[point + 1] == ASCII_0){
 		for(i = point + 1; i < len; i++){
 		    s[i] = s[i+1];
 		}

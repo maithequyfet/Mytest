@@ -26,6 +26,25 @@ for i = 1:m
 	J = J - 1/m * ((y(i) * log(f_hypothesis(i)) + (1 - y(i)) * log(1 - f_hypothesis(i))));
 end
 
+%Use normal equation
+%grad = pinv(X'*X) * X' * y;
+
+%Use gradient decent
+%for iter =1:1000
+%K is temporary vector to store value of gradient decent
+K = zeros(size(theta));
+
+%Compute vector K
+for i=1:m
+	for j = 1:size(theta)
+		if j == 1
+		K(1) = K(1) + 1/m * (f_hypothesis(i) - y(i));
+		else
+		K(j) = K(j) + 1/m * (f_hypothesis(i) - y(i)) * X(i,j);
+	end
+end
+grad = K;
+
 
 % =============================================================
 

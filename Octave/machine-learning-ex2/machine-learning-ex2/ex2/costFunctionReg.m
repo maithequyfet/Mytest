@@ -17,9 +17,27 @@ grad = zeros(size(theta));
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
 
+%Compute the total extremely values
+SumOfTheta = 0;
+for i = 2:size(theta)
+	SumOfTheta = SumOfTheta + lambda / (2 * m) * (theta(i))^2;
+end	
 
+%Call costFunction have been implemmented to get cost(value of
+% cost function) and gradient decent vector
+[cost,gradient] = costFunction(theta, X , y);
 
+J = cost + SumOfTheta;
 
+K = (size(theta));
+% Calculate grad base on gradient have been compute before
+for i = 1:size(theta)
+	if i == 1
+		K(1) = gradient(1);
+	else	
+		K(i) = gradient(i) + lambda/m * theta(i);
+end
+grad = K;
 
 
 % =============================================================

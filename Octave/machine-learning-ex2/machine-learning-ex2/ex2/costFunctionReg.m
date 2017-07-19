@@ -33,7 +33,7 @@ K = (size(theta));
 % Calculate grad base on gradient have been compute before
 for i = 1:size(theta)
 	if i == 1
-		K(1) = gradient(1);
+		K(1) = gradient(1);      %theta(1) always is innital value. It not change.
 	else	
 		K(i) = gradient(i) + lambda/m * theta(i);
 end
